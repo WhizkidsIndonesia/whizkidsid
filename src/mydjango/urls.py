@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 
-from myapp.views import ShowHelloWorld
+from myapp.views import Home
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', ShowHelloWorld.as_view())
+    url(r'^$', Home.as_view())
 ]
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
