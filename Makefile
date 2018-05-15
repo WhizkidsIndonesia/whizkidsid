@@ -36,6 +36,3 @@ log-db:
 
 collectstatic:
 	docker exec dz01 /bin/sh -c "python manage.py collectstatic --noinput"
-
-local:
-	docker exec dz01 /bin/sh -c "python manage.py runserver_plus --cert /tmp/cert"
