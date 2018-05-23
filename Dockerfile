@@ -40,5 +40,6 @@ RUN mkdir /static
 WORKDIR /src
 ADD ./src /src
 RUN pip3 install -r requirements.pip
-CMD python3 manage.py collectstatic --no-input;python3 manage.py migrate; gunicorn mydjango.wsgi -b 0.0.0.0:8000 & celery worker --app=myapp.tasks
-#CMD python manage.py collectstatic --no-input;python manage.py migrate; python manage.py runsslserver 127.0.0.1:8000 & celery worker --app=myapp.tasks
+CMD python3 manage.py collectstatic --no-input;python3 manage.py migrate; gunicorn  mydjango.wsgi -b 0.0.0.0:8000
+#& celery worker --app=myapp.tasks
+#https://github.com/jvranish/docker-https-ssh-tunnel
