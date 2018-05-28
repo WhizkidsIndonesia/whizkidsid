@@ -15,18 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.conf.urls.static import static
-from django.conf import settings
 
 from myapp import views
 from myapp.views import Home, Login
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', Home.as_view()),
+    url(r'^$', Home.as_view(), name='home'),
     url(r'^logged_in/', views.logged_in, name='logged_in'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^login/', Login.as_view()),
+    url(r'^signup/$', views.signup, name='signup'),
 ]
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
