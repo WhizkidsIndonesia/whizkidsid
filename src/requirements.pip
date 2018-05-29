@@ -5,3 +5,4 @@ celery==4.1.1
 redis
 #django-allauth
 google-api-python-client
+django-widget-tweaks

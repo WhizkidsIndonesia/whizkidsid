@@ -10,19 +10,19 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import TemplateView
+
+from myapp.management.commands.email import send_message
 from myapp.tokens import account_activation_token
 
 from myapp.forms import SignUpForm
-from .tasks import show_hello_world
+# from .tasks import show_hello_world
 
-
-class Home(TemplateView):
-    template_name = 'home.html'
-
-    def get(self, *args, **kwargs):
-        show_hello_world.apply()
-        return super().get(*args, **kwargs)
-
+def home(request):
+    if not request.user.is_authenticated():
+        form = SignUpForm()
+        return render(request, 'home.html', {'form': form})
+    else:
+        return render(request, 'home.html')
 
 class Login(TemplateView):
     template_name = 'login.html'
@@ -36,26 +36,27 @@ def logged_in(request):
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
+
         if form.is_valid():
-            user = form.save(commit=False)
+            user = form.save()
+            user.username = user.email.split("@")[0]
+            user.refresh_from_db()
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            subject = 'Activate Your MySite Account'
+            subject = 'Konfirmasi pendaftaran Anda di Whizkids.id'
             message = render_to_string('account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
-            user.email_user(subject, message)
+            #TODO background
+            send_message(user.email, subject, message, message)
             return redirect('account_activation_sent')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-
-def email(request):
-    return render(request, 'account_activation_sent.html')
 
 
 def account_activation_sent(request):

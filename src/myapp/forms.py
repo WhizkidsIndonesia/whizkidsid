@@ -4,8 +4,13 @@ from django.contrib.auth.models import User
 
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    email = forms.EmailField(max_length=254)
+
+    def __init__(self, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
+        # remove username
+        self.fields.pop('password2')
 
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2', )
+        fields = ('email', 'password1')

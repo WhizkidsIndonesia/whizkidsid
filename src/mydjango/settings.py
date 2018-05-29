@@ -40,14 +40,10 @@ INSTALLED_APPS = [
     'myapp.apps.MyappConfig',
     'django.contrib.sites',
     'celery',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.facebook',
-
+    'widget_tweaks'
 ]
 
-SITE_ID = 2
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

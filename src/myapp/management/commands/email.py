@@ -30,7 +30,7 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
-def SendMessage(sender, to, subject, msgHtml, msgPlain):
+def send_message(to, subject, msgHtml, msgPlain, sender='swdev.bali@gmail.com'):
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('gmail', 'v1', http=http)
@@ -63,7 +63,7 @@ def main():
     subject = "subject"
     msgHtml = "Hi<br/>Html Email"
     msgPlain = "Hi\nPlain Email"
-    SendMessage(sender, to, subject, msgHtml, msgPlain)
+    send_message(sender, to, subject, msgHtml, msgPlain)
 
 class Command(BaseCommand):
     help = 'send email'
