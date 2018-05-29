@@ -47,9 +47,6 @@ def signup(request):
             send_message(user.email, subject, message, message)
             messages.info(request, 'Silahkan cek email pendaftaran yang baru saja kami kirimkan ke %s' % user.email)
             return redirect('home')
-    else:
-        form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
 
 
 def activate(request, uidb64, token):

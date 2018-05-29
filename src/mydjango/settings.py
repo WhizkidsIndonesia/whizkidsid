@@ -25,7 +25,7 @@ SECRET_KEY = '-au3&glnt&h(g^!s$rjjgh6szj=$(wxnelw2uiw+6^83+5ab^#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['web']
+ALLOWED_HOSTS = ['web', 'localhost', 'whizkids.id']
 
 
 # Application definition
@@ -75,6 +75,10 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'myapp.models.CustomBackend',
+)
 
 # AUTHENTICATION_BACKENDS = (
 #     # Needed to login by username in Django admin, regardless of `allauth`
