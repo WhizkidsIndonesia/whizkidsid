@@ -4,3 +4,4 @@ psycopg2==2.6.2
 celery==4.1.1
 redis
 django-allauth
+google-api-python-client

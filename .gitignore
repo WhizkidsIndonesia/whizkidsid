@@ -1,3 +1,6 @@
+client_secret.json
+credentials.json
+local_settings.py
 .idea
 venv
 # Byte-compiled / optimized / DLL files

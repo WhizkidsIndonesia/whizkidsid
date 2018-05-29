@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^login/', Login.as_view()),
     url(r'^signup/$', views.signup, name='signup'),
+    url(r'^email/$', views.email, name='email'),
+
 ]
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
