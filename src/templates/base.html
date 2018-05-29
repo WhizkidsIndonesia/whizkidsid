@@ -63,6 +63,18 @@
     <!-- Header -->
     <header class="masthead bg-primary text-white text-center">
       <div class="container">
+         {% if messages %}
+          <div class="container">
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    <strong>{{ message }}</strong>
+                </div>
+                  {% endfor %}
+            </div>
+          {% endif %}
         <img class="img-fluid mb-5 d-block mx-auto" src="static/img/profile.png" alt="">
         <h1 class="text-uppercase mb-0">Hai Whizkids!</h1>
         <br/>

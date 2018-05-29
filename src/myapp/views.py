@@ -53,7 +53,9 @@ def signup(request):
             })
             #TODO background
             send_message(user.email, subject, message, message)
-            return redirect('account_activation_sent')
+            from django.contrib import messages
+            messages.info(request, 'Silahkan cek email pendaftaran yang baru saja kami kirimkan ke %s' % user.email)
+            return redirect('home')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
