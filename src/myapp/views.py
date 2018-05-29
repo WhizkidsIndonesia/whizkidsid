@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -24,15 +25,6 @@ def home(request):
     else:
         return render(request, 'home.html')
 
-class Login(TemplateView):
-    template_name = 'login.html'
-
-    def get(self, *args, **kwargs):
-        return super().get(*args, **kwargs)
-
-def logged_in(request):
-    return HttpResponse('OKAY!')
-
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -43,26 +35,21 @@ def signup(request):
             user.refresh_from_db()
             user.is_active = False
             user.save()
-            current_site = get_current_site(request)
             subject = 'Konfirmasi pendaftaran Anda di Whizkids.id'
             message = render_to_string('account_activation_email.html', {
+                'username': user.email.split("@")[0],
                 'user': user,
-                'domain': current_site.domain,
+                'host': 'whizkids.id', #request.get_host(), #TOFIX for docker container
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
             #TODO background
             send_message(user.email, subject, message, message)
-            from django.contrib import messages
             messages.info(request, 'Silahkan cek email pendaftaran yang baru saja kami kirimkan ke %s' % user.email)
             return redirect('home')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-
-
-def account_activation_sent(request):
-    return render(request, 'account_activation_sent.html')
 
 
 def activate(request, uidb64, token):
@@ -77,6 +64,7 @@ def activate(request, uidb64, token):
         user.profile.email_confirmed = True
         user.save()
         login(request, user)
+        messages.info(request, 'Akun berhasil di aktifkan! Selamat datang di Whizkids Indonesia!')
         return redirect('home')
     else:
         return render(request, 'account_activation_invalid.html')

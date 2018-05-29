@@ -30,7 +30,7 @@ def get_credentials():
         print('Storing credentials to ' + credential_path)
     return credentials
 
-def send_message(to, subject, msgHtml, msgPlain, sender='swdev.bali@gmail.com'):
+def send_message(to, subject, msgHtml, msgPlain, sender="Whizkids Indonesia <swdev.bali@gmail.com>"):
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('gmail', 'v1', http=http)

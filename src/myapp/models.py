@@ -21,5 +21,5 @@ import uuid
 
 def random_username(sender, instance, **kwargs):
     if not instance.username:
-        instance.username = uuid.uuid4().hex[:30]
+        instance.username = instance.email.split("@")[0]
 models.signals.pre_save.connect(random_username, sender=User)
