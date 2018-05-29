@@ -16,3 +16,10 @@ def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+import uuid
+
+def random_username(sender, instance, **kwargs):
+    if not instance.username:
+        instance.username = uuid.uuid4().hex[:30]
+models.signals.pre_save.connect(random_username, sender=User)
