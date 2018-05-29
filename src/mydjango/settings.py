@@ -40,10 +40,10 @@ INSTALLED_APPS = [
     'myapp.apps.MyappConfig',
     'django.contrib.sites',
     'celery',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
 
 ]
 
@@ -80,39 +80,39 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
-SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'METHOD': 'oauth2',
-        'SCOPE': ['email', 'public_profile', 'user_friends'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'INIT_PARAMS': {'cookie': True},
-        'FIELDS': [
-            'id',
-            'email',
-            'name',
-            'first_name',
-            'last_name',
-            'verified',
-            'locale',
-            'timezone',
-            'link',
-            'gender',
-            'updated_time',
-        ],
-        'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': 'logged_in',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v2.12',
-    }
-}
+# AUTHENTICATION_BACKENDS = (
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     'django.contrib.auth.backends.ModelBackend',
+#
+#     # `allauth` specific authentication methods, such as login by e-mail
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# )
+#
+# SOCIALACCOUNT_PROVIDERS = {
+#     'facebook': {
+#         'METHOD': 'oauth2',
+#         'SCOPE': ['email', 'public_profile', 'user_friends'],
+#         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+#         'INIT_PARAMS': {'cookie': True},
+#         'FIELDS': [
+#             'id',
+#             'email',
+#             'name',
+#             'first_name',
+#             'last_name',
+#             'verified',
+#             'locale',
+#             'timezone',
+#             'link',
+#             'gender',
+#             'updated_time',
+#         ],
+#         'EXCHANGE_TOKEN': True,
+#         'LOCALE_FUNC': 'logged_in',
+#         'VERIFIED_EMAIL': False,
+#         'VERSION': 'v2.12',
+#     }
+# }
 
 WSGI_APPLICATION = 'mydjango.wsgi.application'
 
@@ -125,6 +125,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
+        'PASSWORD': 'totallysecret',
         'HOST': 'db',
         'PORT': 5432,
     }
@@ -199,6 +200,8 @@ LOGGING = {
         },
     },
 }
+
+LOGIN_REDIRECT_URL = 'home'
 
 # ---------------- Local Settings ---------------------------------------
 # Put your local settings in mydjango directory to override this settings
