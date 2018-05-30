@@ -17,7 +17,6 @@ def update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     instance.profile.save()
 
-import uuid
 
 def random_username(sender, instance, **kwargs):
     if not instance.username:
