@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'myapp.apps.MyappConfig',
     'django.contrib.sites',
     'celery',
-    'widget_tweaks'
+    'widget_tweaks',
 ]
 
 SITE_ID = 2
