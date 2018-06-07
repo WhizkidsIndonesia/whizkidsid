@@ -1,11 +1,14 @@
 build:
 	docker-compose build
 
-up:
+up-d:
 	docker-compose up -d
 
-up-non-daemon:
+up:
 	docker-compose up
+
+down:
+	docker-compose down
 
 start:
 	docker-compose start
@@ -35,4 +38,4 @@ log-db:
 	docker-compose logs db
 
 collectstatic:
-	docker exec dz01 /bin/sh -c "python manage.py collectstatic --noinput"  
+	docker exec dz01 /bin/sh -c "python manage.py collectstatic --noinput"

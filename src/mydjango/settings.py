@@ -25,7 +25,7 @@ SECRET_KEY = '-au3&glnt&h(g^!s$rjjgh6szj=$(wxnelw2uiw+6^83+5ab^#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['web']
+ALLOWED_HOSTS = ['web', 'localhost', 'whizkids.id']
 
 
 # Application definition
@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp.apps.MyappConfig',
+    'django.contrib.sites',
     'celery',
+    'widget_tweaks',
 ]
+
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,10 +70,49 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request'
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'myapp.models.CustomBackend',
+)
+
+# AUTHENTICATION_BACKENDS = (
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     'django.contrib.auth.backends.ModelBackend',
+#
+#     # `allauth` specific authentication methods, such as login by e-mail
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# )
+#
+# SOCIALACCOUNT_PROVIDERS = {
+#     'facebook': {
+#         'METHOD': 'oauth2',
+#         'SCOPE': ['email', 'public_profile', 'user_friends'],
+#         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+#         'INIT_PARAMS': {'cookie': True},
+#         'FIELDS': [
+#             'id',
+#             'email',
+#             'name',
+#             'first_name',
+#             'last_name',
+#             'verified',
+#             'locale',
+#             'timezone',
+#             'link',
+#             'gender',
+#             'updated_time',
+#         ],
+#         'EXCHANGE_TOKEN': True,
+#         'LOCALE_FUNC': 'logged_in',
+#         'VERIFIED_EMAIL': False,
+#         'VERSION': 'v2.12',
+#     }
+# }
 
 WSGI_APPLICATION = 'mydjango.wsgi.application'
 
@@ -82,6 +125,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
+        'PASSWORD': 'totallysecret',
         'HOST': 'db',
         'PORT': 5432,
     }
@@ -156,6 +200,8 @@ LOGGING = {
         },
     },
 }
+
+LOGIN_REDIRECT_URL = 'home'
 
 # ---------------- Local Settings ---------------------------------------
 # Put your local settings in mydjango directory to override this settings

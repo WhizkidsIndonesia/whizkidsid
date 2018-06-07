@@ -22,8 +22,14 @@ services:
     links:
       - redis
   db:
-    image: postgres:latest
+    image: postgres:9.5
     container_name: pz01
+    ports:
+      - '5438:5432'
+    environment:
+      POSTGRES_ENV_POSTGRES_USER: 'postgres'
+      POSTGRES_ENV_POSTGRES_PASSWORD: 'totallysecret'
+
   redis:
     image: redis:latest
     container_name: rz01
