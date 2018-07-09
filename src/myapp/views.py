@@ -47,7 +47,7 @@ def signup(request):
             #TODO background
             send_message(user.email, subject, message, message)
             messages.info(request, 'Silahkan cek email pendaftaran yang baru saja kami kirimkan ke %s' % user.email)
-            return redirect('home')
+            return redirect('index')
 
 
 def activate(request, uidb64, token):
