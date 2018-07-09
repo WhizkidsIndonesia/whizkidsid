@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load widget_tweaks %}
+<header class="masthead">
+  <section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="row">
+            <div class="col-md-4 ml-auto">
+            </div>
+          <div class="col-md-4 ml-auto">
+
+  <form method="post">
+    {% csrf_token %}
+         {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}<br>
+        {% render_field field class="form-control" %}
+        <!--{% if field.help_text %}-->
+          <!--<small style="color: grey">{{ field.help_text }}</small>-->
+        <!--{% endif %}-->
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+          </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Daftar</button>&nbsp; Sudah terdaftar? Masuk <a href="/login">disini</a>
+  </form>
+          </div>
+      <div class="col-md-4 ml-auto">
+            </div>
+    </div>
+  </div>
+</section>
+</header>
+
+{% endblock %}

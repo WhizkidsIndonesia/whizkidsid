@@ -17,6 +17,21 @@ def update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     instance.profile.save()
 
+class Course(models.Model):
+    code = models.CharField(max_length=10)
+    name = models.CharField(max_length=70)
+
+    def  __str__(self):
+        return '[%s] %s' % (self.code, self.name)
+
+class Lesson(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    order = models.IntegerField()
+    name = models.CharField(max_length=70)
+
+    def  __str__(self):
+        return '%s - %d. %s' % (self.course, self.order, self.name)
+
 
 def random_username(sender, instance, **kwargs):
     if not instance.username:

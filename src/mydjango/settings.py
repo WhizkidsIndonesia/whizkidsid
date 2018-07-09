@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'celery',
     'widget_tweaks',
+    'django_extensions'
 ]
 
 SITE_ID = 2
@@ -201,7 +202,8 @@ LOGGING = {
     },
 }
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = '/login'
 
 # ---------------- Local Settings ---------------------------------------
 # Put your local settings in mydjango directory to override this settings
