@@ -33,8 +33,13 @@ def signup(request):
         form = SignUpForm(request.POST)
 
         if form.is_valid():
+            username = form.cleaned_data['email'].split("@")[0]
+            user = User.objects.filter(username=username)
+            if len(user) > 0:
+                messages.info(request, 'Email atau username tersebut sudah terdaftar %s' % user[0].email)
+                return redirect('signup')
             user = form.save()
-            user.username = user.email.split("@")[0]
+            user.username = username
             user.refresh_from_db()
             user.is_active = False
             user.save()
@@ -50,6 +55,9 @@ def signup(request):
             send_message(user.email, subject, message, message)
             messages.info(request, 'Silahkan cek email pendaftaran yang baru saja kami kirimkan ke %s' % user.email)
             return redirect('index')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 def activate(request, uidb64, token):
