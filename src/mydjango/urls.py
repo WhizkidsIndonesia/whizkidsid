@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from myapp import views
-from myapp.views import activate
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -30,7 +29,7 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        activate, name='activate'),
+        views.activate, name='activate'),
 
 ]
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

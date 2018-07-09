@@ -56,7 +56,7 @@ def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+    except Exception as ex: #(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
     if user is not None and account_activation_token.check_token(user, token):
@@ -65,14 +65,12 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user)
         messages.info(request, 'Akun berhasil di aktifkan! Selamat datang di Whizkids Indonesia!')
-        return redirect('index')
     else:
         return render(request, 'account_activation_invalid.html')
 
 @login_required
 def member(request):
     return render(request, 'member.html')
-    # return render(request, 'isoworld/Isometric Game.html')
 
 @login_required
 def world(request):
