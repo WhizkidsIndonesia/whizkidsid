@@ -69,4 +69,4 @@ def activate(request, uidb64, token):
 
 @login_required
 def member(request):
-    return render(request, 'member.html')
+    return render(request, 'isoworld/Isometric Game.html')
