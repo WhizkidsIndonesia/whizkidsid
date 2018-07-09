@@ -13,22 +13,23 @@
 
   <div class="row">
 
-    <div class="col-xs-2 left">
+    <div class="col-xs-6 left">
 
       <div class="navigation"></div>
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">1. Salam kenal!</a>
-            <a href="#" class="list-group-item list-group-item-action disable">2. Dunia virtualmu</a>
+          {% for lesson in lessons %}
+            <a href="#" class="list-group-item list-group-item-action">{{ lesson.name }}</a>
+          {% endfor %}
         </div>
 
     </div> <!-- /col-md-2 navigation -->
 
 
-    <div class="col-xs-8 col-md-10 content">
+    <div class="col-xs-6 col-md-8 content">
 
       <p>Content of the site</p>
 
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+      <p align="justify">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
       totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
       dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cor magni dolores
       eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,

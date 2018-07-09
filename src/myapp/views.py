@@ -14,6 +14,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import TemplateView
 
 from myapp.management.commands.email import send_message
+from myapp.models import Lesson, Course
 from myapp.tokens import account_activation_token
 
 from myapp.forms import SignUpForm
@@ -24,7 +25,8 @@ def index(request):
         form = SignUpForm()
         return render(request, 'home.html', {'form': form})
     else:
-        return render(request, 'home.html')
+        lessons = Lesson.objects.filter(course__code='WHZ-01').order_by('order')
+        return render(request, 'home.html', {'lessons': lessons})
 
 def signup(request):
     if request.method == 'POST':
