@@ -54,7 +54,6 @@
             <li class="dropdown nav-item mx-0 mx-lg-1">
           <a href="#" class="dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" data-toggle="dropdown">{{ user.get_username }}<span class="glyphicon glyphicon-user pull-right"></span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-item mx-0 mx-lg-1" href="/member">Member</a></li>
             <li class="divider"></li>
             <li><a  class="nav-item mx-0 mx-lg-1" href="/logout">Logout</a></li>
           </ul>
@@ -85,6 +84,7 @@
     {% block content %}
     {% endblock %}
 
+    {% if not user.is_authenticated %}
      <!-- Footer -->
     <footer class="footer text-center">
       <div class="container">
@@ -123,7 +123,7 @@
         </div>
       </div>
     </footer>
-
+{% endif %}
     <div class="copyright py-4 text-center text-white">
       <div class="container">
         <small>Hak Cipta &copy; Whizkids.id 2018</small>
