@@ -2,6 +2,7 @@ from __future__ import print_function
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
@@ -18,7 +19,7 @@ from myapp.tokens import account_activation_token
 from myapp.forms import SignUpForm
 # from .tasks import show_hello_world
 
-def home(request):
+def index(request):
     if not request.user.is_authenticated():
         form = SignUpForm()
         return render(request, 'home.html', {'form': form})
@@ -65,3 +66,7 @@ def activate(request, uidb64, token):
         return redirect('home')
     else:
         return render(request, 'account_activation_invalid.html')
+
+@login_required
+def member(request):
+    return render(request, 'member.html')
