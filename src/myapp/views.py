@@ -63,7 +63,7 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user)
         messages.info(request, 'Akun berhasil di aktifkan! Selamat datang di Whizkids Indonesia!')
-        return redirect('home')
+        return redirect('index')
     else:
         return render(request, 'account_activation_invalid.html')
 
