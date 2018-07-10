@@ -1,5 +1,5 @@
 if (!igeRoot) {
-	igeRoot = './';
+	igeRoot = '/static/engine/';
 }
 window.igeLoader = (function () {
 	// Load the engine stylesheet
@@ -36,7 +36,7 @@ window.igeLoader = (function () {
 		if (typeof(igeCoreConfig) !== 'undefined') {
 			// Load the client config
 			ccScript = document.createElement('script');
-			ccScript.src = './ClientConfig.js';
+			ccScript.src = '/static/engine/ClientConfig.js';
 			ccScript.onload = function () {
 				self.clientConfigReady();
 			};

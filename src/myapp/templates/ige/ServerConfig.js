@@ -1,6 +1,6 @@
 var igeConfig = {
 	include: [
-		{name: 'ServerNetworkEvents', path: './gameClasses/ServerNetworkEvents'}
+		{name: 'ServerNetworkEvents', path: '/static/engine/gameClasses/ServerNetworkEvents'}
 	]
 };
 
