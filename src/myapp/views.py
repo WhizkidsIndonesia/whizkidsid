@@ -83,4 +83,4 @@ def member(request):
 
 @login_required
 def world(request):
-    return render(request, 'isoworld/Isometric Game.html')
+    return render(request, 'ige/index.html')
