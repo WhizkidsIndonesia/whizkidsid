@@ -28,6 +28,7 @@ class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     order = models.IntegerField()
     name = models.CharField(max_length=70)
+    content = models.TextField()
 
     def  __str__(self):
         return '%s - %d. %s' % (self.course, self.order, self.name)

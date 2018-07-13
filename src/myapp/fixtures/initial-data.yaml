@@ -1,0 +1,16 @@
+- model: myapp.course
+  pk: 1
+  fields:
+    code: WHZ-01
+    name: Programmer? Siapa sih itu?
+
+
+- model: myapp.lesson
+  pk: 1
+  fields:
+    course_id: 1
+    order: 1
+    name: "Perkenalkan aku dulu: Komputer!"
+    content: "Belum"
+
+
