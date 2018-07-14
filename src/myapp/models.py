@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Profile(models.Model):
@@ -28,7 +29,7 @@ class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     order = models.IntegerField()
     name = models.CharField(max_length=70)
-    content = models.TextField()
+    content = RichTextUploadingField()
 
     def  __str__(self):
         return '%s - %d. %s' % (self.course, self.order, self.name)
