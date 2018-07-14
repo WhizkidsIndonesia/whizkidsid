@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'celery',
     'widget_tweaks',
-    'django_extensions'
+    'django_extensions',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 SITE_ID = 2
@@ -205,6 +207,7 @@ LOGGING = {
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = '/login'
 
+CKEDITOR_UPLOAD_PATH = 'uploads'
 # ---------------- Local Settings ---------------------------------------
 # Put your local settings in mydjango directory to override this settings
 # File name should be local_settings.py

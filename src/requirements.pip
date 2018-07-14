@@ -1,6 +1,6 @@
 Django==1.11
 django_extensions
-gunicorn==19.6.0  
+gunicorn==19.6.0
 psycopg2==2.6.2
 celery==4.1.1
 redis
@@ -9,3 +9,5 @@ oauth2client
 google-api-python-client
 django-widget-tweaks
 pyyaml
+django-ckeditor
+pillow
